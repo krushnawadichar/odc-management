@@ -49,6 +49,12 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-select-bs5/select.bootstrap5.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-fixedcolumns-bs5/fixedcolumns.bootstrap5.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css" />
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/app-calendar.css') }}" />
@@ -68,12 +74,12 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Include Sidebar -->
-        @include('layouts.sidebar')
+        @include('admin.layouts.sidebar')
 
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Include Header -->
-          @include('layouts.header')
+          @include('admin.layouts.header')
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
@@ -84,7 +90,7 @@
             <!-- / Content -->
 
             <!-- Footer -->
-            @include('layouts.footer')
+            @include('admin.layouts.footer')
             
             <div class="content-backdrop fade"></div>
           </div>
@@ -121,9 +127,14 @@
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
 
-    <!-- Main JS -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+        <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
 
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../../assets/js/tables-datatables-extensions.js"></script>
     <!-- Page JS -->
     @stack('pageScripts')
   </body>

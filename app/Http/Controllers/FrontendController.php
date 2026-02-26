@@ -20,12 +20,12 @@ class FrontendController extends Controller
     public function home()
     {
         $companies = Company::latest()->take(5)->get();
-        $manpowers = OdcManpower::where('status','available')
-                        ->latest()
-                        ->take(5)
-                        ->get();
+        $manpowers = OdcManpower::where('status', 'available')
+            ->latest()
+            ->take(5)
+            ->get();
 
-        return view('home', compact('companies','manpowers'));
+        return view('home', compact('companies', 'manpowers'));
     }
 
     /* Show Forms */
@@ -50,11 +50,14 @@ class FrontendController extends Controller
         ]);
 
         $this->service->registerManpower($request->only([
-            'name','phone','skills','available_date'
+            'name',
+            'phone',
+            'skills',
+            'available_date'
         ]));
 
         return redirect()->route('home')
-            ->with('success','Manpower Registered Successfully');
+            ->with('success', 'Manpower Registered Successfully');
     }
 
     public function registerCompany(Request $request)
@@ -68,12 +71,42 @@ class FrontendController extends Controller
         ]);
 
         $this->service->registerCompany($request->only([
-            'company_name','contact_person','phone',
-            'required_date','required_manpower'
+            'company_name',
+            'contact_person',
+            'phone',
+            'required_date',
+            'required_manpower'
         ]));
 
         return redirect()->route('home')
-            ->with('success','Company Registered Successfully');
+            ->with('success', 'Company Registered Successfully');
+    }
+
+    // New methods
+    public function workers()
+    {
+        $manpowers = OdcManpower::latest()->paginate(9);
+        return view('frontend.workers', compact('manpowers'));
+    }
+
+    public function companies()
+    {
+        $companies = Company::latest()->paginate(9);
+        return view('frontend.companies', compact('companies'));
+    }
+
+    public function services()
+    {
+        return view('frontend.services');
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
+    public function contact()
+    {
+        return view('frontend.contact');
     }
 }
-
