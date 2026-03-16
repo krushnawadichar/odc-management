@@ -19,7 +19,7 @@ class FrontendController extends Controller
     /* Home Page */
     public function home()
     {
-        $companies = Company::latest()->take(5)->get();
+        $companies = [];
         $manpowers = OdcManpower::where('status', 'available')
             ->latest()
             ->take(5)

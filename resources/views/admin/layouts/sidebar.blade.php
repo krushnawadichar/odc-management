@@ -40,11 +40,11 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
-        <li class="menu-item">
-      <a href="#" class="menu-link">
+      <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a href="{{ route('dashboard') }}" class="menu-link">
         <i class="menu-icon tf-icons ti ti-mail"></i>
-        <div data-i18n="Dashboard">Dashboard</div>
-      </a>
+           <div data-i18n="Dashboard">Dashboard</div>
+        </a>
     </li>
     <!-- Dashboards -->
     <!-- <li class="menu-item">
@@ -85,15 +85,15 @@
     <!-- <li class="menu-header small">
       <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
     </li> -->
-    <li class="menu-item">
-      <a href="{{ route('company.list') }}" class="menu-link">
+    <li class="menu-item {{ request()->is('company*') ? 'active' : '' }}">
+        <a href="{{ route('company.list') }}" class="menu-link">
         <i class="menu-icon tf-icons ti ti-building"></i>
         <div data-i18n="Company">Company</div>
       </a>
     </li>
 
-    <li class="menu-item">
-      <a href="{{ route('employe.list') }}" class="menu-link">
+    <li class="menu-item {{ request()->is('worker*') ? 'active' : '' }}">
+      <a href="{{ route('worker.list') }}" class="menu-link">
         <i class="menu-icon tf-icons ti ti-user"></i>
         <div data-i18n="Employe">Employe</div>
       </a>

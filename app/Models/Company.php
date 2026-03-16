@@ -1,25 +1,84 @@
 <?php
+// app/Models/Company.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    protected $table = 'companies';
+    use SoftDeletes;
 
     protected $fillable = [
         'company_name',
-        'contact_person',
+        'registration_number',
+        'email',
         'phone',
-        'required_date',
-        'required_manpower',
-        'status',
+        'founded_year',
+        'contact_person_name',
+        'contact_person_designation',
+        'contact_person_email',
+        'contact_person_phone',
+        'address',
+        'country',
+        'state',
+        'city',
+        'postal_code',
+        'document_name',
+        'document',
+        'status'
     ];
 
-    public function requests()
+    protected $casts = [
+        'founded_year' => 'integer',
+    ];
+
+    // Relationships
+    public function countryData()
     {
-        return $this->hasMany(ContractRequest::class);
+        return $this->belongsTo(Country::class, 'country');
     }
 
+    public function stateData()
+    {
+        return $this->belongsTo(State::class, 'state');
+    }
+
+    public function cityData()
+    {
+        return $this->belongsTo(City::class, 'city');
+    }
+
+    // Accessors
+    public function getDocumentUrlAttribute()
+    {
+        return $this->document ? asset('storage/' . $this->document) : null;
+    }
+
+    public function getCountryNameAttribute()
+    {
+        return $this->countryData->name ?? 'N/A';
+    }
+
+    public function getStateNameAttribute()
+    {
+        return $this->stateData->name ?? 'N/A';
+    }
+
+    public function getCityNameAttribute()
+    {
+        return $this->cityData->name ?? 'N/A';
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'Active');
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 'Inactive');
+    }
 }
