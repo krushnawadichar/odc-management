@@ -90,7 +90,7 @@
                                 <input type="email" 
                                        name="email" 
                                        class="form-control @error('email') is-invalid @enderror" 
-                                       value="{{ old('email', $worker->email ?? '') }}" 
+                                       value="{{ old('email', $worker->user->email ?? '') }}" 
                                        placeholder="Enter email address"
                                        required>
                                 @error('email')
@@ -105,7 +105,7 @@
                                 <input type="text" 
                                        name="phone" 
                                        class="form-control @error('phone') is-invalid @enderror" 
-                                       value="{{ old('phone', $worker->phone ?? '') }}" 
+                                       value="{{ old('phone', $worker->user->phone ?? '') }}" 
                                        placeholder="Enter phone number"
                                        required>
                                 @error('phone')

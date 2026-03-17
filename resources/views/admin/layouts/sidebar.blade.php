@@ -95,7 +95,7 @@
     <li class="menu-item {{ request()->is('worker*') ? 'active' : '' }}">
       <a href="{{ route('worker.list') }}" class="menu-link">
         <i class="menu-icon tf-icons ti ti-user"></i>
-        <div data-i18n="Employe">Employe</div>
+        <div data-i18n="Worker">Worker</div>
       </a>
     </li>
 

@@ -127,7 +127,7 @@ class CompanyController extends Controller
 
             'contact_person_name' => 'required|string|max:255',
             'contact_person_designation' => 'nullable|string|max:100',
-            'contact_person_email' => 'required|email|max:255',
+            'contact_person_email' => 'nullable|email|max:255',
             'contact_person_phone' => 'required|string|max:20',
 
             'address' => 'required|string',

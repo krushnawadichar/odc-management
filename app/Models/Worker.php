@@ -18,8 +18,7 @@ class Worker extends Model
         // Personal Information
         'first_name',
         'last_name',
-        'email',
-        'phone',
+        'user_id',
         'dob',
         'gender',
         'profile_image',
@@ -176,5 +175,10 @@ class Worker extends Model
                 $worker->registration_date = now();
             }
         });
+    }
+
+            public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

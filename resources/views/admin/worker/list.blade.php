@@ -66,8 +66,8 @@
                             <span class="text-muted">N/A</span>
                    
                     </td>
-                    <td>{{ $worker->email }}</td>
-                    <td>{{ $worker->phone }}</td>
+                    <td>{{ $worker->user->email }}</td>
+                    <td>{{ $worker->user->phone }}</td>
                     <td>{{ $worker->registration_date ? $worker->registration_date->format('d-m-Y') : 'N/A' }}</td>
                     <td>₹{{ number_format($worker->salary_per_day, 2) }}</td>
                     <td>
