@@ -48,7 +48,7 @@ class WorldLocationSeeder extends Seeder
                     
                     $country = Country::create([
                         'name' => $countryData['name']['common'] ?? $countryData['name']['official'] ?? 'Unknown',
-                        'iso2' => $countryData['cca2'] ?? null,
+
                         'phonecode' => $phonecode ?: null,
                     ]);
                     

@@ -11,10 +11,9 @@ class Company extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'company_name',
+        'user_id',
         'registration_number',
-        'email',
-        'phone',
+        // 'email',
         'founded_year',
         'contact_person_name',
         'contact_person_designation',
@@ -81,4 +80,11 @@ class Company extends Model
     {
         return $query->where('status', 'Inactive');
     }
+
+        public function userData()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }

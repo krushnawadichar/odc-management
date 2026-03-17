@@ -60,7 +60,7 @@
                                 <input type="text" 
                                        name="company_name" 
                                        class="form-control @error('company_name') is-invalid @enderror" 
-                                       value="{{ old('company_name', $company->company_name ?? '') }}" 
+                                       value="{{ old('company_name', $company->userData->name ?? '') }}" 
                                        placeholder="Enter company name"
                                        required>
                                 @error('company_name')
@@ -89,7 +89,7 @@
                                 <input type="email" 
                                        name="email" 
                                        class="form-control @error('email') is-invalid @enderror" 
-                                       value="{{ old('email', $company->email ?? '') }}" 
+                                       value="{{ old('email', $company->userData->email ?? '') }}" 
                                        placeholder="Enter email address"
                                        required>
                                 @error('email')
@@ -102,7 +102,7 @@
                                 <input type="text" 
                                        name="phone" 
                                        class="form-control @error('phone') is-invalid @enderror" 
-                                       value="{{ old('phone', $company->phone ?? '') }}" 
+                                       value="{{ old('phone', $company->userData->phone ?? '') }}" 
                                        placeholder="Enter phone number">
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>

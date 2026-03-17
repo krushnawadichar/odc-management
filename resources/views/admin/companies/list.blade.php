@@ -80,10 +80,8 @@
                                         <input type="checkbox" class="form-check-input" id="selectAll">
                                     </th>
                                     <th>Company</th>
-                                    <th>Registration No.</th>
                                     <th>Contact Person</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
+                                    <th>Contact</th>
                                     <th>Verification</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -105,24 +103,31 @@
                                             @else
                                                 <div class="bg-secondary rounded-circle me-2 d-flex align-items-center justify-content-center" 
                                                      style="width: 35px; height: 35px;">
-                                                    <span class="text-white text-uppercase">{{ substr($company->company_name, 0, 1) }}</span>
+                                                    <span class="text-white text-uppercase">{{ substr($company->userData->name, 0, 1) }}</span>
                                                 </div>
                                             @endif
                                             <div>
-                                                <strong>{{ $company->company_name }}</strong>
+                                                <strong>{{ $company->userData->name }}</strong>
                                                 <br>
                                                 <small class="text-muted">{{ $company->industry_sector ?? 'N/A' }}</small>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $company->registration_number }}</td>
                                     <td>
                                         {{ $company->contact_person_name }}
                                         <br>
                                         <small class="text-muted">{{ $company->contact_person_designation ?? 'N/A' }}</small>
                                     </td>
-                                    <td>{{ $company->email }}</td>
-                                    <td>{{ $company->phone ?? 'N/A' }}</td>
+                                    <td>
+                                        <div>
+                                            <i class="fa fa-envelope me-1 text-primary"></i>
+                                            {{ $company->userData->email }}
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-phone me-1 text-success"></i>
+                                            {{ $company->userData->phone ?? 'N/A' }}
+                                        </div>
+                                    </td>
                                     <td>
                                         @if($company->verification_status == 'Verified')
                                             <span class="badge bg-success">Verified</span>
