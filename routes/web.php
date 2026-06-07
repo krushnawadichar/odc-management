@@ -6,39 +6,35 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\WorkController;
 
 
 
-// admin routes
+// ========== admin routes =========
 
+Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    })->middleware(['verified'])->name('dashboard');
+
 
     // Company routes
+    Route::get('/company-list', [CompanyController::class, 'companyList'])->name('company.list');
+    Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
+    Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('/company/show/{id}', [CompanyController::class, 'show'])->name('company.show');
+    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::put('/company/update/{id}', [CompanyController::class, 'update'])->name('company.update');
+    Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy'])->name('company.delete');
+    Route::post('/company/bulk-delete', [CompanyController::class, 'bulkDelete'])->name('company.bulk-delete');
+
+    Route::post('/company/verify/{id}', [CompanyController::class, 'verify'])->name('company.verify');
+    Route::post('/company/bulk-verify', [CompanyController::class, 'bulkVerify'])->name('company.bulk-verify');
 
 
-// Company routes
-Route::get('/company-list', [CompanyController::class, 'companyList'])->name('company.list');
-Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
-Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
-Route::get('/company/show/{id}', [CompanyController::class, 'show'])->name('company.show');
-Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('company.edit');
-Route::put('/company/update/{id}', [CompanyController::class, 'update'])->name('company.update');
-Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy'])->name('company.delete');
-Route::post('/company/bulk-delete', [CompanyController::class, 'bulkDelete'])->name('company.bulk-delete');
-
-Route::post('/company/verify/{id}', [CompanyController::class, 'verify'])->name('company.verify');
-Route::post('/company/bulk-delete', [CompanyController::class, 'bulkDelete'])->name('company.bulk-delete');
-Route::post('/company/bulk-verify', [CompanyController::class, 'bulkVerify'])->name('company.bulk-verify');
-
-
-
-
-
-// AJAX routes for location
-Route::get('/get-states/{countryId}', [CompanyController::class, 'getStates'])->name('get.states');
-Route::get('/get-cities/{stateId}', [CompanyController::class,'getCities'])->name('get.cities');
+    // AJAX routes for location
+    Route::get('/get-states/{countryId}', [CompanyController::class, 'getStates'])->name('get.states');
+    Route::get('/get-cities/{stateId}', [CompanyController::class,'getCities'])->name('get.cities');
 
 
     Route::get('/employe-store',[WorkerController::class,'adminStoreEmploye'])->name('admin.employes.store');
@@ -52,8 +48,31 @@ Route::get('/get-cities/{stateId}', [CompanyController::class,'getCities'])->nam
     Route::get('/worker/show/{id}', [WorkerController::class, 'show'])->name('workers.show');
     Route::delete('/worker/destroy/{id}', [WorkerController::class, 'destroy'])->name('workers.destroy');
 
+    Route::get('/works', [WorkController::class, 'workList'])
+        ->name('work.list');
 
+    Route::get('/works/show/{id}', [WorkController::class, 'showWork'])
+        ->name('work.show');
 
+    Route::get('/works/create', [WorkController::class, 'createWork'])
+        ->name('work.create');
+
+    Route::post('/works/store', [WorkController::class, 'workStore'])
+        ->name('work.store');
+
+    Route::get('/works/edit/{id}', [WorkController::class, 'editWork'])
+        ->name('work.edit');
+
+    Route::put('/works/update/{id}', [WorkController::class, 'updateWork'])
+        ->name('work.update');
+
+    Route::delete('/works/delete/{id}', [WorkController::class, 'deleteWork'])
+        ->name('work.delete');
+
+});
+    
+
+// ========== End admin routes =========
 
 // Route::get('/', function () {
 //     return view('welcome');
